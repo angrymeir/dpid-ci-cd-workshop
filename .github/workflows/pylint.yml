@@ -1,14 +1,14 @@
-#name: Pylint
-#
-#on: [push]
-#
-#jobs:
-#  python-lint:
-#    runs-on: ubuntu-latest
-#    name: CI workflow
-#    steps:
-#    - name: checkout source repo
-#      uses: actions/checkout@main
-#
-#    - name: linting
-#      uses: programmingwithalex/pylinter@main
+name: Pylint
+
+on: [push]
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+    name: CI workflow
+    steps:
+    - name: checkout source repo
+      uses: actions/checkout@main
+
+    - name: linting
+      uses: programmingwithalex/pylinter@main
