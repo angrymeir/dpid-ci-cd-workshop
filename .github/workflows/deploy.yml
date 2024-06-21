@@ -1,0 +1,42 @@
+#name: Deploy
+#on:
+#  workflow_run:
+#    workflows: ["Create and publish a Docker image"]
+#    types:
+#      - completed
+#  workflow_dispatch:
+#
+#env:
+#  REGISTRY: ghcr.io
+#  IMAGE_NAME: ${{ github.repository }}
+#
+#jobs:
+#  deploy:
+#    name: deploy
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: 'read'
+#      id-token: 'write'
+#
+#    steps:
+#    - uses: 'actions/checkout@v4'
+#
+#    - name: Extract metadata (tags, labels) for Docker
+#      id: meta
+#      uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+#      with:
+#        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+#
+#    - uses: 'google-github-actions/auth@v2'
+#      with:
+#        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+#        
+#
+#    - id: 'deploy'
+#      uses: 'google-github-actions/deploy-cloudrun@v2'
+#      with:
+#        service: 'hello-cloud-run'
+#        image: 'gcr.io/cloudrun/hello'
+#
+#    - name: 'Use output'
+#      run: 'curl "${{ steps.deploy.outputs.url }}"'
