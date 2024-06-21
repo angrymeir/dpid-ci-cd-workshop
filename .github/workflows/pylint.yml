@@ -12,3 +12,4 @@ jobs:
 
     - name: linting
       uses: programmingwithalex/pylinter@main
+
