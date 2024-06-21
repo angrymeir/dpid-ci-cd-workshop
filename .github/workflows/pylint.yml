@@ -1,7 +1,7 @@
 name: Pylint
 
 on: [push]
-#
+
 jobs:
   python-lint:
     runs-on: ubuntu-latest
